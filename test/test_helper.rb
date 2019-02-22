@@ -7,3 +7,4 @@ require 'pry'
 require 'csv'
 
 require './lib/enigma'
+require './lib/keys'
