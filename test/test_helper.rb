@@ -8,3 +8,4 @@ require 'csv'
 
 require './lib/enigma'
 require './lib/key'
+require './lib/offset'
