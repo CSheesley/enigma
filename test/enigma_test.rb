@@ -2,8 +2,6 @@ require './test/test_helper'
 
 class EnigmaTest < Minitest::Test
 
-<<<<<<< Updated upstream
-=======
   def test_it_exists
     enigma = Enigma.new
     assert_instance_of Enigma, enigma
@@ -52,7 +50,6 @@ class EnigmaTest < Minitest::Test
     # random key output? Test what we do know. Todays date, encrypted message,
     # length of key > 5
     expected = {encryption: "keder ohulw"}
->>>>>>> Stashed changes
-
+  end
 
 end
