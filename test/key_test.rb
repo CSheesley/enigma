@@ -26,6 +26,18 @@ class KeyTest < Minitest::Test
     assert_equal "00005", enigma_3.encrypted[:key]
   end
 
+  def test_it_can_create_a_random_key_of_5_characters
+    enigma_1 = Enigma.new
+    enigma_2 = Enigma.new
+
+    set_1 = enigma_1.random_characters
+    set_2 = enigma_2.random_characters
+
+    assert_equal 5, set_1.length
+    assert_equal 5, set_2.length
+    assert_equal false, set_1 == set_2
+  end
+
   def test_if_no_key_is_given_a_random_5_character_key_is_created_and_assigned
     enigma_1 = Enigma.new
     enigma_2 = Enigma.new
