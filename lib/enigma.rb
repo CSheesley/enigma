@@ -1,10 +1,8 @@
-require './lib/key'
-require './lib/offset'
+require './lib/shift'
 
 class Enigma
   attr_accessor :encrypted
-  include Key
-  include Offset
+  include Shift
 
   def initialize
     @encrypted = {}
