@@ -8,6 +8,12 @@ class KeysTest < Minitest::Test
     assert_instance_of Key, key
   end
 
+  def test_it_has_characters_as_an_attribute
+    key = Key.new("02715")
+    
+    assert_equal "02715", key.characters
+  end
+
   def test_it_can_prepend_string_with_zeros_until_five_characters_long
     key_1 = Key.new("2715")
     key_2 = Key.new("987")
@@ -34,7 +40,7 @@ class KeysTest < Minitest::Test
 
     assert_equal 5, key_1.random_characters.length
     assert_equal 5, key_1.characters.length
-    
+
     assert_equal false, key_1.characters == key_2.characters
   end
 end
