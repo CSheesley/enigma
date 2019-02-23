@@ -7,4 +7,4 @@ require 'pry'
 
 require './lib/enigma'
 require './lib/key'
-# require './lib/offset'
+require './lib/offset'
