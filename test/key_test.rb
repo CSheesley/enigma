@@ -7,9 +7,9 @@ class KeyTest < Minitest::Test
     enigma_2 = Enigma.new
     enigma_3 = Enigma.new
 
-    assert_equal "02715", enigma_1.format_to_five_chars("2715")
-    assert_equal "00987", enigma_2.format_to_five_chars("987")
-    assert_equal "00005", enigma_3.format_to_five_chars("5")
+    assert_equal "02715", enigma_1.format_to_char_length("2715", 5)
+    assert_equal "00987", enigma_2.format_to_char_length("987", 5)
+    assert_equal "00005", enigma_3.format_to_char_length("5", 5)
   end
 
   def test_if_less_than_5_characters_zeros_can_be_prepended_upon_input
