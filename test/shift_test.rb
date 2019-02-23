@@ -9,15 +9,15 @@ class ShiftTest < Minitest::Test
     enigma_2 = Enigma.new
     enigma_2.encrypt("hello world", "12345", "080589")
 
-    assert_equal 3, enigma_1.a_shift("02715", "040895")
-    assert_equal 27, enigma_1.b_shift("02715", "040895")
-    assert_equal 73, enigma_1.c_shift("02715", "040895")
-    assert_equal 20, enigma_1.d_shift("02715", "040895")
+    assert_equal 3, enigma_1.a_shift_value("02715", "040895")
+    assert_equal 27, enigma_1.b_shift_value("02715", "040895")
+    assert_equal 73, enigma_1.c_shift_value("02715", "040895")
+    assert_equal 20, enigma_1.d_shift_value("02715", "040895")
 
-    assert_equal 18, enigma_2.a_shift("12345", "080589")
-    assert_equal 32, enigma_2.b_shift("12345", "080589")
-    assert_equal 36, enigma_2.c_shift("12345", "080589")
-    assert_equal 46, enigma_2.d_shift("12345", "080589")
+    assert_equal 18, enigma_2.a_shift_value("12345", "080589")
+    assert_equal 32, enigma_2.b_shift_value("12345", "080589")
+    assert_equal 36, enigma_2.c_shift_value("12345", "080589")
+    assert_equal 46, enigma_2.d_shift_value("12345", "080589")
   end
 
 end
