@@ -1,15 +1,20 @@
 require './lib/key'
-require './lib/offset'
+# require './lib/offset'
 
 class Enigma
-  # include Shift
-    # which will include key and offset
+  attr_accessor :encrypted
+  include Key
+  # include Offset
 
-  # def encrypt(phrase, key = random_characters, date = "111387")
-  #   encrypted = {
-  #     encryption: phrase,
-  #     key: format_to_five_chars(key),
-  #     date: date}
-  # end
+  def initialize
+    @encrypted = {}
+  end
+
+  def encrypt(phrase, key = random_characters, date = "111387")
+    encrypted[:encryption] = phrase
+    encrypted[:key] = format_to_five_chars(key)
+    encrypted[:date] = date
+    @encrypted
+  end
 
 end
