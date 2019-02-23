@@ -16,5 +16,4 @@ class Enigma
     encrypted[:date] = date
     @encrypted
   end
-
 end
