@@ -8,10 +8,9 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_can_encrypt_a_message_with_a_key_and_a_date
-    skip
     enigma = Enigma.new
     expected = {encryption: "keder ohulw", key: "02715", date: "040895"}
-
+    # binding.pry
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
@@ -28,7 +27,8 @@ class EnigmaTest < Minitest::Test
     enigma = Enigma.new
     # use today's date for date output in hash result - determine how to test
     # include todays date in expected value
-    expected = {encryption: "keder ohulw", key: "02715"}
+    #test for key match
+    #test for phrase length
 
     assert_equal expected, enigma.encrypt("hello world", "02715")
   end
@@ -38,7 +38,8 @@ class EnigmaTest < Minitest::Test
     enigma = Enigma.new
     # use today's date for date output in hash result - determine how to test
     # include todays date in expected value
-    expected = {encryption: "keder ohulw", key: "02715"}
+    #test for key match
+    #test for phrase length
 
     assert_equal expected, enigma.decrypt(encrypted[:encryption], "02715")
   end
