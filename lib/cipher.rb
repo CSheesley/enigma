@@ -2,15 +2,12 @@ require './lib/shift'
 
 class Cipher
   include Shift
+    attr_reader :key, :date
 
   def initialize(phrase, key, date)
     @phrase = phrase
-    @key = key
-    @date = date
-    # @a_shift = a_shift_value(key, date)
-    # @b_shift = b_shift_value(key, date)
-    # @c_shift = c_shift_value(key, date)
-    # @d_shift = d_shift_value(key, date)
+    @key = format_to_char_length(key, 5)
+    @date = format_to_char_length(date, 6)
   end
 
   def character_index
@@ -21,10 +18,20 @@ class Cipher
   #   character_index.rotate(value)
   # end
 
+  # def encrypt_table(shift_value, key, date,)
+  #   tables = {}
+  #   tables[:a] = shift_table(a_shift_value(key,date))
+  #
+  # end
+  #
+  # def shift_table(shift_value)
+  #   shifted_characters = character_index.rotate(shift_value(key, date))
+  #   table = character_index.zip(shifted_characters).to_h
+  # end
+
   def a_shift_table(key, date)
     shifted_characters = character_index.rotate(a_shift_value(key, date))
     table = character_index.zip(shifted_characters).to_h
-    # binding.pry
   end
 
   def b_shift_table(key, date)
