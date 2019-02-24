@@ -43,6 +43,7 @@ class CipherTest < Minitest::Test
   end
 
   def test_it_can_create_a_cipher_table_for_the_c_shift
+
     enigma = Enigma.new
     enigma.encrypt("hello world", "02715", "040895")
 
@@ -57,6 +58,7 @@ class CipherTest < Minitest::Test
   end
 
   def test_it_can_create_a_cipher_table_for_the_d_shift
+    skip
     enigma = Enigma.new
     enigma.encrypt("hello world", "02715", "040895")
 
