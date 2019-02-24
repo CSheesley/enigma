@@ -10,7 +10,7 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt_a_message_with_a_key_and_a_date
     enigma = Enigma.new
     expected = {encryption: "keder ohulw", key: "02715", date: "040895"}
-    # binding.pry
+  
     assert_equal expected, enigma.encrypt("hello world", "02715", "040895")
   end
 
@@ -24,9 +24,10 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_encrypt_a_message_with_a_key_and_no_date
     skip
+    # encrypt a message with a key (uses today's date)
     enigma = Enigma.new
-    # use today's date for date output in hash result - determine how to test
-    # include todays date in expected value
+    # ?use today's date for date output in hash result - determine how to test
+    # ?include todays date in expected value
     #test for key match
     #test for phrase length
 
@@ -35,9 +36,10 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_decrypt_a_message_with_a_key_and_no_date
     skip
+    #decrypt a message with a key (uses today's date)
     enigma = Enigma.new
-    # use today's date for date output in hash result - determine how to test
-    # include todays date in expected value
+    # ?use today's date for date output in hash result - determine how to test
+    # ?include todays date in expected value
     #test for key match
     #test for phrase length
 
