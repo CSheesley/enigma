@@ -14,42 +14,18 @@ class Cipher
     ("a".."z").to_a << " "
   end
 
-  # def shifted_characters(value)
-  #   character_index.rotate(value)
-  # end
-
   def encrypt_table(key, date)
     tables = {}
-    tables[:a] = a_encrypt_table(key, date)
-    tables[:b] = b_encrypt_table(key, date)
-    tables[:c] = c_encrypt_table(key, date)
-    tables[:d] = d_encrypt_table(key, date)
+    tables[:a] = shift_table(a_shift_value(key, date))
+    tables[:b] = shift_table(b_shift_value(key, date))
+    tables[:c] = shift_table(c_shift_value(key, date))
+    tables[:d] = shift_table(d_shift_value(key, date))
     tables
   end
 
   def shift_table(shift_value)
-    shifted_characters = character_index.rotate(shift_value(key, date))
+    shifted_characters = character_index.rotate(shift_value)
     table = character_index.zip(shifted_characters).to_h
-  end
-
-  def a_encrypt_table(key, date)
-    shifted_characters = character_index.rotate(a_shift_value(key, date))
-    character_index.zip(shifted_characters).to_h
-  end
-
-  def b_encrypt_table(key, date)
-    shifted_characters = character_index.rotate(b_shift_value(key, date))
-    character_index.zip(shifted_characters).to_h
-  end
-
-  def c_encrypt_table(key, date)
-    shifted_characters = character_index.rotate(c_shift_value(key, date))
-    character_index.zip(shifted_characters).to_h
-  end
-
-  def d_encrypt_table(key, date)
-    shifted_characters = character_index.rotate(d_shift_value(key, date))
-    character_index.zip(shifted_characters).to_h
   end
 
   def encoded
