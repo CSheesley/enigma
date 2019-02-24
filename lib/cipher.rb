@@ -11,7 +11,7 @@ class Cipher
   end
 
   def character_index
-    index = ("a".."z").to_a << " "
+    ("a".."z").to_a << " "
   end
 
   # def shifted_characters(value)
@@ -31,46 +31,38 @@ class Cipher
 
   def a_shift_table(key, date)
     shifted_characters = character_index.rotate(a_shift_value(key, date))
-    table = character_index.zip(shifted_characters).to_h
+    character_index.zip(shifted_characters).to_h
   end
 
   def b_shift_table(key, date)
     shifted_characters = character_index.rotate(b_shift_value(key, date))
-    table = character_index.zip(shifted_characters).to_h
+    character_index.zip(shifted_characters).to_h
   end
 
   def c_shift_table(key, date)
     shifted_characters = character_index.rotate(c_shift_value(key, date))
-    table = character_index.zip(shifted_characters).to_h
+    character_index.zip(shifted_characters).to_h
   end
 
   def d_shift_table(key, date)
     shifted_characters = character_index.rotate(d_shift_value(key, date))
-    table = character_index.zip(shifted_characters).to_h
+    character_index.zip(shifted_characters).to_h
   end
 
   def encoded
     encoded = ""
     split_phrase = @phrase.chars
-    counter = 1
-
-    split_phrase.each do |character|
+    split_phrase.each_with_index do |character, index|
       if !character_index.include?(character)
         encoded << character
-      elsif counter == 1
-        encoded << a_shift_table(@key, @date)[character]
-      elsif counter == 2
-        encoded << b_shift_table(@key, @date)[character]
-      elsif counter == 3
-        encoded << c_shift_table(@key, @date)[character]
+      elsif ((index + 1)% 4) % 4 == 0
+        encoded << d_shift_table(key, date)[character]
+      elsif ((index + 1)% 4) % 3 == 0
+        encoded << c_shift_table(key, date)[character]
+      elsif ((index + 1)% 4) % 2 == 0
+        encoded << b_shift_table(key, date)[character]
       else
-        encoded << d_shift_table(@key, @date)[character]
-      end
-
-      if counter < 4
-        counter+= 1
-      else
-        counter = 1
+        encoded << a_shift_table(key, date)[character]
       end
     end
     encoded
