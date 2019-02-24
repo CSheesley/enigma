@@ -18,33 +18,36 @@ class Cipher
   #   character_index.rotate(value)
   # end
 
-  # def encrypt_table(shift_value, key, date,)
-  #   tables = {}
-  #   tables[:a] = shift_table(a_shift_value(key,date))
-  #
-  # end
-  #
-  # def shift_table(shift_value)
-  #   shifted_characters = character_index.rotate(shift_value(key, date))
-  #   table = character_index.zip(shifted_characters).to_h
-  # end
+  def encrypt_table(key, date)
+    tables = {}
+    tables[:a] = a_encrypt_table(key, date)
+    tables[:b] = b_encrypt_table(key, date)
+    tables[:c] = c_encrypt_table(key, date)
+    tables[:d] = d_encrypt_table(key, date)
+    tables
+  end
 
-  def a_shift_table(key, date)
+  def shift_table(shift_value)
+    shifted_characters = character_index.rotate(shift_value(key, date))
+    table = character_index.zip(shifted_characters).to_h
+  end
+
+  def a_encrypt_table(key, date)
     shifted_characters = character_index.rotate(a_shift_value(key, date))
     character_index.zip(shifted_characters).to_h
   end
 
-  def b_shift_table(key, date)
+  def b_encrypt_table(key, date)
     shifted_characters = character_index.rotate(b_shift_value(key, date))
     character_index.zip(shifted_characters).to_h
   end
 
-  def c_shift_table(key, date)
+  def c_encrypt_table(key, date)
     shifted_characters = character_index.rotate(c_shift_value(key, date))
     character_index.zip(shifted_characters).to_h
   end
 
-  def d_shift_table(key, date)
+  def d_encrypt_table(key, date)
     shifted_characters = character_index.rotate(d_shift_value(key, date))
     character_index.zip(shifted_characters).to_h
   end
@@ -56,13 +59,13 @@ class Cipher
       if !character_index.include?(character)
         encoded << character
       elsif ((index + 1)% 4) % 4 == 0
-        encoded << d_shift_table(key, date)[character]
+        encoded << encrypt_table(key, date)[:d][character]
       elsif ((index + 1)% 4) % 3 == 0
-        encoded << c_shift_table(key, date)[character]
+        encoded << encrypt_table(key, date)[:c][character]
       elsif ((index + 1)% 4) % 2 == 0
-        encoded << b_shift_table(key, date)[character]
+        encoded << encrypt_table(key, date)[:b][character]
       else
-        encoded << a_shift_table(key, date)[character]
+        encoded << encrypt_table(key, date)[:a][character]
       end
     end
     encoded
