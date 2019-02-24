@@ -13,63 +13,81 @@ class CipherTest < Minitest::Test
     assert_equal " ", enigma.character_index.last
   end
 
-
-  def test_it_can_create_a_cipher_table_for_the_a_shift
+  def test_it_can_create_a_cipher_table_for_each_encrypt_shift
     enigma = Enigma.new
     enigma.encrypt("hello world", "02715", "040895")
 
-    expected = {
+    a_expected = {
       "a"=>"d", "b"=>"e", "c"=>"f", "d"=>"g", "e"=>"h", "f"=>"i","g"=>"j",
       "h"=>"k", "i"=>"l", "j"=>"m", "k"=>"n", "l"=>"o", "m"=>"p", "n"=>"q",
       "o"=>"r", "p"=>"s", "q"=>"t", "r"=>"u", "s"=>"v", "t"=>"w", "u"=>"x",
       "v"=>"y", "w"=>"z", "x"=>" ", "y"=>"a", "z"=>"b", " "=>"c"
       }
 
-    assert_equal expected, enigma.a_shift_table("02715", "040895")
-  end
-
-  def test_it_can_create_a_cipher_table_for_the_b_shift
-    enigma = Enigma.new
-    enigma.encrypt("hello world", "02715", "040895")
-
-    expected = {
+    b_expected = {
       "a"=>"a", "b"=>"b", "c"=>"c", "d"=>"d", "e"=>"e", "f"=>"f", "g"=>"g",
       "h"=>"h", "i"=>"i", "j"=>"j", "k"=>"k", "l"=>"l", "m"=>"m", "n"=>"n",
       "o"=>"o", "p"=>"p", "q"=>"q", "r"=>"r", "s"=>"s", "t"=>"t", "u"=>"u",
       "v"=>"v", "w"=>"w", "x"=>"x", "y"=>"y", "z"=>"z", " "=>" "
       }
 
-    assert_equal expected, enigma.b_shift_table("02715", "040895")
-  end
-
-  def test_it_can_create_a_cipher_table_for_the_c_shift
-
-    enigma = Enigma.new
-    enigma.encrypt("hello world", "02715", "040895")
-
-    expected = {
+    c_expected = {
       "a"=>"t", "b"=>"u", "c"=>"v", "d"=>"w", "e"=>"x", "f"=>"y", "g"=>"z",
       "h"=>" ", "i"=>"a", "j"=>"b", "k"=>"c", "l"=>"d", "m"=>"e", "n"=>"f",
       "o"=>"g", "p"=>"h", "q"=>"i", "r"=>"j", "s"=>"k", "t"=>"l", "u"=>"m",
       "v"=>"n", "w"=>"o", "x"=>"p", "y"=>"q", "z"=>"r", " "=>"s"
       }
 
-    assert_equal expected, enigma.c_shift_table("02715", "040895")
-  end
-
-  def test_it_can_create_a_cipher_table_for_the_d_shift
-    skip
-    enigma = Enigma.new
-    enigma.encrypt("hello world", "02715", "040895")
-
-    expected = {
+    d_expected = {
       "a"=>"u", "b"=>"v", "c"=>"w", "d"=>"x", "e"=>"y", "f"=>"z", "g"=>" ",
       "h"=>"a", "i"=>"b", "j"=>"c", "k"=>"d", "l"=>"e", "m"=>"f", "n"=>"g",
       "o"=>"h", "p"=>"i", "q"=>"j", "r"=>"k", "s"=>"l", "t"=>"m", "u"=>"n",
       "v"=>"o", "w"=>"p", "x"=>"q", "y"=>"r", "z"=>"s", " "=>"t"
       }
 
-    assert_equal expected, enigma.d_shift_table("02715", "040895")
+    assert_equal a_expected, enigma.encrypt_table("02715", "040895")[:a]
+    assert_equal b_expected, enigma.encrypt_table("02715", "040895")[:b]
+    assert_equal c_expected, enigma.encrypt_table("02715", "040895")[:c]
+    assert_equal d_expected, enigma.encrypt_table("02715", "040895")[:d]
   end
+
+  def test_it_can_create_a_cipher_table_for_each_decrypt_shift
+    enigma = Enigma.new
+    enigma.decrypt("keder ohulw", "02715", "040895")
+
+    a_expected = {
+      "a"=>"y", "b"=>"z", "c"=>" ", "d"=>"a", "e"=>"b", "f"=>"c", "g"=>"d",
+      "h"=>"e", "i"=>"f", "j"=>"g", "k"=>"h", "l"=>"i", "m"=>"j", "n"=>"k",
+      "o"=>"l", "p"=>"m", "q"=>"n", "r"=>"o", "s"=>"p", "t"=>"q", "u"=>"r",
+      "v"=>"s", "w"=>"t", "x"=>"u", "y"=>"v", "z"=>"w", " "=>"x"
+      }
+
+    b_expected = {
+      "a"=>"a", "b"=>"b", "c"=>"c", "d"=>"d", "e"=>"e", "f"=>"f", "g"=>"g",
+      "h"=>"h", "i"=>"i", "j"=>"j", "k"=>"k", "l"=>"l", "m"=>"m", "n"=>"n",
+      "o"=>"o", "p"=>"p", "q"=>"q", "r"=>"r", "s"=>"s", "t"=>"t", "u"=>"u",
+      "v"=>"v", "w"=>"w", "x"=>"x", "y"=>"y", "z"=>"z", " "=>" "
+      }
+
+    c_expected = {
+      "a"=>"i", "b"=>"j", "c"=>"k", "d"=>"l", "e"=>"m", "f"=>"n", "g"=>"o",
+      "h"=>"p", "i"=>"q", "j"=>"r", "k"=>"s", "l"=>"t", "m"=>"u", "n"=>"v",
+      "o"=>"w", "p"=>"x", "q"=>"y", "r"=>"z", "s"=>" ", "t"=>"a", "u"=>"b",
+      "v"=>"c", "w"=>"d", "x"=>"e", "y"=>"f", "z"=>"g", " "=>"h"
+      }
+
+    d_expected = {
+      "a"=>"i", "b"=>"j", "c"=>"k", "d"=>"l", "e"=>"m", "f"=>"n", "g"=>"o",
+      "h"=>"p", "i"=>"q", "j"=>"r", "k"=>"s", "l"=>"t", "m"=>"u", "n"=>"v",
+      "o"=>"w", "p"=>"x", "q"=>"y", "r"=>"z", "s"=>" ", "t"=>"a", "u"=>"b",
+      "v"=>"c", "w"=>"d", "x"=>"e", "y"=>"f", "z"=>"g", " "=>"h"
+      }
+
+      assert_equal a_expected, enigma.decrypt_table("02715", "040895")[:a]
+      assert_equal b_expected, enigma.decrypt_table("02715", "040895")[:b]
+      assert_equal c_expected, enigma.decrypt_table("02715", "040895")[:c]
+      assert_equal d_expected, enigma.decrypt_table("02715", "040895")[:d]
+  end
+
 
 end
