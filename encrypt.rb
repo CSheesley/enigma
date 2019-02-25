@@ -5,10 +5,11 @@ message = handle.read
 handle.close
 
 enigma = Enigma.new
-encrypted = enigma.encrypt(message)
+enigma.encrypt(message)
+encrypted = enigma.encrypted[:encryption]
 
 writer = File.open(ARGV[1], "w")
 writer.write(encrypted)
 writer.close
 
-puts "Created '#{ARGV[1]}' with key '#{enigma.encrypted[:key]}' and date '#{enigma.encrypted[:date]}'"
+puts "Created '#{ARGV[1]}' with key #{enigma.encrypted[:key]} and date #{enigma.encrypted[:date]}"
