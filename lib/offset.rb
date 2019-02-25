@@ -18,28 +18,17 @@ module Offset
 
   def last_four_of_squared(date)
     squared_to_int = date.to_i ** 2
-    as_string = squared_to_int.to_s
-    last_four = as_string[-4,4]
+    last_four_of_string = squared_to_int.to_s
+    last_four_of_string[-4,4]
   end
 
-  def a_offset_values(date)
-    offset = last_four_of_squared(date)
-    offset[0].to_i
-  end
-
-  def b_offset_values(date)
-    offset = last_four_of_squared(date)
-    offset[1].to_i
-  end
-
-  def c_offset_values(date)
-    offset = last_four_of_squared(date)
-    offset[2].to_i
-  end
-
-  def d_offset_values(date)
-    offset = last_four_of_squared(date)
-    offset[3].to_i
+  def offset_table(date)
+    offset_values = {}
+    offset_values[:a] = last_four_of_squared(date)[0].to_i
+    offset_values[:b] = last_four_of_squared(date)[1].to_i
+    offset_values[:c] = last_four_of_squared(date)[2].to_i
+    offset_values[:d] = last_four_of_squared(date)[3].to_i
+    offset_values
   end
 
 end

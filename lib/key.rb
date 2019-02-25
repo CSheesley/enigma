@@ -13,19 +13,13 @@ module Key
     format_to_char_length(selection, 5)
   end
 
-  def a_key_values(key)
-    (key[0] + key[1]).to_i
+  def key_table(key)
+    key_values = {}
+    key_values[:a] = (key[0] + key[1]).to_i
+    key_values[:b] = (key[1] + key[2]).to_i
+    key_values[:c] = (key[2] + key[3]).to_i
+    key_values[:d] = (key[3] + key[4]).to_i
+    key_values
   end
 
-  def b_key_values(key)
-    (key[1] + key[2]).to_i
-  end
-
-  def c_key_values(key)
-    (key[2] + key[3]).to_i
-  end
-
-  def d_key_values(key)
-    (key[3] + key[4]).to_i
-  end
 end
