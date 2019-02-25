@@ -2,7 +2,7 @@ require './lib/shift'
 
 class Cipher
   include Shift
-    attr_reader :key, :date
+  attr_reader :key, :date
 
   def initialize(message, key, date)
     @message = message.downcase
@@ -44,13 +44,13 @@ class Cipher
       if !character_index.include?(character)
         encoded << character
       elsif ((index + 1)% 4) % 4 == 0
-        encoded << encrypt_table(key, date)[:d][character]
+        encoded << encrypt_table(@key, @date)[:d][character]
       elsif ((index + 1)% 4) % 3 == 0
-        encoded << encrypt_table(key, date)[:c][character]
+        encoded << encrypt_table(@key, @date)[:c][character]
       elsif ((index + 1)% 4) % 2 == 0
-        encoded << encrypt_table(key, date)[:b][character]
+        encoded << encrypt_table(@key, @date)[:b][character]
       else
-        encoded << encrypt_table(key, date)[:a][character]
+        encoded << encrypt_table(@key, @date)[:a][character]
       end
     end
     encoded
@@ -63,13 +63,13 @@ class Cipher
       if !character_index.include?(character)
         decoded << character
       elsif ((index + 1)% 4) % 4 == 0
-        decoded << decrypt_table(key, date)[:d][character]
+        decoded << decrypt_table(@key, @date)[:d][character]
       elsif ((index + 1)% 4) % 3 == 0
-        decoded << decrypt_table(key, date)[:c][character]
+        decoded << decrypt_table(@key, @date)[:c][character]
       elsif ((index + 1)% 4) % 2 == 0
-        decoded << decrypt_table(key, date)[:b][character]
+        decoded << decrypt_table(@key, @date)[:b][character]
       else
-        decoded << decrypt_table(key, date)[:a][character]
+        decoded << decrypt_table(@key, @date)[:a][character]
       end
     end
     decoded
