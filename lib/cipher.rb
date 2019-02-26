@@ -33,7 +33,9 @@ class Cipher
     decoded = ""
     split_message = @message.chars
     split_message.each_with_index do |character, index|
-      if ((index + 1)% 4) % 4 == 0
+      if !character_index.include?(character)
+        encoded << character
+      elsif ((index + 1)% 4) % 4 == 0
         decoded << decrypt_table(@key, @date)[:d][character]
       elsif ((index + 1)% 4) % 3 == 0
         decoded << decrypt_table(@key, @date)[:c][character]
