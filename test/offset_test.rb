@@ -2,7 +2,7 @@ require './test/test_helper'
 
 class OffsetTest < Minitest::Test
 
-  def test_it_can_find_todays_date #unnecessary test?
+  def test_it_can_find_todays_date
     enigma = Enigma.new
     today = Time.new
 

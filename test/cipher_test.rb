@@ -2,17 +2,6 @@ require './test/test_helper'
 
 class CipherTest < Minitest::Test
 
-  def test_it_has_27_characters_to_index
-    enigma = Enigma.new
-
-    expected = ("a".."z").to_a << " "
-
-    assert_equal expected, enigma.character_index
-    assert_equal 27, enigma.character_index.length
-    assert_equal "a", enigma.character_index.first
-    assert_equal " ", enigma.character_index.last
-  end
-
   def test_it_can_encode_a_message
     cipher = Cipher.new("hello world", "02715", "040895")
 

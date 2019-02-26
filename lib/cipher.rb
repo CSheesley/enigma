@@ -10,10 +10,6 @@ class Cipher
     @date = format_to_char_length(date, 6)
   end
 
-  def character_index
-    ("a".."z").to_a << " "
-  end
-
   def encoded
     encoded = ""
     split_message = @message.chars
