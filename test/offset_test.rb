@@ -2,7 +2,7 @@ require './test/test_helper'
 
 class OffsetTest < Minitest::Test
 
-  def test_it_can_find_todays_date #unnecessary test?
+  def test_it_can_find_todays_date
     enigma = Enigma.new
     today = Time.new
 
@@ -51,10 +51,10 @@ class OffsetTest < Minitest::Test
     enigma = Enigma.new
     enigma.encrypt("hello world", "02715", "040895")
 
-    assert_equal 1, enigma.a_offset_values("040895")
-    assert_equal 0, enigma.b_offset_values("040895")
-    assert_equal 2, enigma.c_offset_values("040895")
-    assert_equal 5, enigma.d_offset_values("040895")
+    assert_equal 1, enigma.offset_table("040895")[:a]
+    assert_equal 0, enigma.offset_table("040895")[:b]
+    assert_equal 2, enigma.offset_table("040895")[:c]
+    assert_equal 5, enigma.offset_table("040895")[:d]
   end
 
 end
