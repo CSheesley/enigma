@@ -33,7 +33,7 @@ class EnigmaTest < Minitest::Test
   def test_it_can_decrypt_a_message_with_a_key_and_no_date
     enigma = Enigma.new
     enigma.encrypt("hello world", "02715")
-    encryped_string = enigma.encrypted[:encryption]
+    encrypted_string = enigma.encrypted[:encryption]
 
     expected = {
       :decryption=>"hello world",
@@ -41,7 +41,7 @@ class EnigmaTest < Minitest::Test
       :date=> enigma.todays_date
       }
 
-    assert_equal expected, enigma.decrypt(encryped_string, "02715")
+    assert_equal expected, enigma.decrypt(encrypted_string, "02715")
   end
 
   def test_it_can_encrypt_a_message_with_only_a_message
